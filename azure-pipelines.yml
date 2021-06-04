@@ -4,12 +4,14 @@ trigger:
 variables:
   node_version: 12.14.1
   function_app_name: 'TI-node-test'
-  code_coverge_threshold: '60'
+  code_coverge_threshold: '20'
 
 pool:
-  vmImage: 'ubuntu-16.04'
+  vmImage: 'ubuntu-latest'
 
 steps:
+- checkout: self
+    path: $(System.DefaultWorkingDirectory)/src/$(function_app_name)
 - task: NodeTool@0 
   inputs:
     versionSpec: $(node_version)
