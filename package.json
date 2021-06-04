@@ -4,8 +4,16 @@
   "description": "",
   "scripts": {
     "start": "func start",
-    "test": "echo \"No tests yet...\""
+    "lint": "./node_modules/.bin/eslint ./",
+    "test": "jest",
+    "test-ci": "node_modules/.bin/jest --ci --reporters=jest-junit --reporters=default",
+    "coverage": "jest --coverage",
+    "coverage-ci": "node_modules/.bin/jest --ci --reporters=jest-junit --coverage --coverageReporters=cobertura"
   },
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "eslint": "^7.27.0",
+    "jest": "^27.0.4",
+    "jest-junit": "^12.1.0"
+  }
 }
