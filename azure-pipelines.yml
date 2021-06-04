@@ -3,7 +3,7 @@ trigger:
 
 variables:
   node_version: 12.14.1
-  function_app_name: 'TI-node-test'
+  function_app_name: 'TINodeTest'
   code_coverge_threshold: '20'
 
 pool:
