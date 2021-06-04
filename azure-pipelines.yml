@@ -7,28 +7,28 @@ variables:
   code_coverge_threshold: '20'
 
 pool:
-  vmImage: 'vs2017-win2016'
+  vmImage: 'ubuntu-latest'
 
 steps:
 - checkout: self
-  path: $(System.DefaultWorkingDirectory)/src/$(function_app_name)
+  path: $(function_app_name)
 - task: NodeTool@0 
   inputs:
     versionSpec: $(node_version)
 
 # Install dev dependencies
 - script: npm install
-  workingDirectory: $(System.DefaultWorkingDirectory)/src/$(function_app_name)
+  #workingDirectory: $(System.DefaultWorkingDirectory)/src/$(function_app_name)
   displayName: "Install linting, test and coverage dependencies"
 
 # Perform linting using eslint  
 - script: npm run-script lint
-  workingDirectory: $(System.DefaultWorkingDirectory)/src/$(function_app_name)
+  #workingDirectory: $(System.DefaultWorkingDirectory)/src/$(function_app_name)
   displayName: "Run code linting"
 
 # Execute unit tests
 - script: npm run-script test-ci
-  workingDirectory: $(System.DefaultWorkingDirectory)/src/$(function_app_name)
+  #workingDirectory: $(System.DefaultWorkingDirectory)/src/$(function_app_name)
   displayName: "Execute unit tests"
   continueOnError: true
 
@@ -44,7 +44,7 @@ steps:
   displayName: 'Publish unit test report'
 
 - script: npm run-script coverage-ci
-  workingDirectory: $(System.DefaultWorkingDirectory)/src/$(function_app_name)
+  #workingDirectory: $(System.DefaultWorkingDirectory)/src/$(function_app_name)
   displayName: "Calculate Code Coverage"
 
 # Publish code coverage results
@@ -64,13 +64,13 @@ steps:
 
 # Prune dev dependencies
 - script: npm prune --production
-  workingDirectory: $(System.DefaultWorkingDirectory)/src/$(function_app_name) 
+  #workingDirectory: $(System.DefaultWorkingDirectory)/src/$(function_app_name) 
   displayName: "Prune dev dependencies"
 
 - task: ArchiveFiles@2
   displayName: "Archive files"
   inputs:
-    rootFolderOrFile: "$(System.DefaultWorkingDirectory)/src/$(function_app_name)"
+    #rootFolderOrFile: "$(System.DefaultWorkingDirectory)/src/$(function_app_name)"
     includeRootFolder: false
     archiveFile: "$(System.DefaultWorkingDirectory)/build$(Build.BuildId).zip"
 
