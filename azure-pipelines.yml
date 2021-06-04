@@ -11,7 +11,7 @@ pool:
 
 steps:
 - checkout: self
-  path: $(System.DefaultWorkingDirectory)/src/(function_app_name)
+  path: $(System.DefaultWorkingDirectory)/src/$(function_app_name)
 - task: NodeTool@0 
   inputs:
     versionSpec: $(node_version)
