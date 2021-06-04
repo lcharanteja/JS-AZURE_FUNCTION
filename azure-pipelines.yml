@@ -51,7 +51,7 @@ steps:
 - task: PublishCodeCoverageResults@1
   inputs:
     codeCoverageTool: Cobertura
-    summaryFileLocation: $(System.DefaultWorkingDirectory)/src/$(function_app_name)/coverage/cobertura-coverage.xml
+    summaryFileLocation: coverage/cobertura-coverage.xml
   displayName: "publish code coverage report"
 
 # Fail build if coverage below threshold
